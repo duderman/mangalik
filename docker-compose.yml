@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  site:
+    build:
+      context: ./site
+      dockerfile: ./site/Dockerfile
+    image: duderman/mangalik
+    restart: unless-stopped
+    networks:
+      - site-network
+  email_sender:
+    build:
+      context: ./email_sender
+      dockerfile: ./email_sender/Dockerfile
+    image: duderman/mangalik-email_sender
+    restart: unless-stopped
+    networks:
+      - site-network
+      - email-network
+    environment:
+      - SMTP_HOST=exim
+      - SMTP_PORT=4444
+      - EMAILS_RECEIVER
+      - SMTP_USER
+      - SMTP_PASS
+  exim:
+    build:
+      context: ./exim
+      dockerfile: ./exim/Dockerfile
+    image: duderman/mangalik-exim
+    restart: unless-stopped
+    networks:
+      - email-network
+    environment:
+      - PRIMARY_HOST=xn--80aaivkedj.xn--p1ai
+      - ALLOWED_HOSTS="172.17.0.1/16"
+    volumes:
+      - /data:/data
+    ports:
+      - 4444:25
+  nginx:
+    image: nginx:mainline-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx-conf:/etc/nginx/conf.d
+    depends_on:
+      - site
+      - email_sender
+    networks:
+      - site-network
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+
+networks:
+  site-network:
+  email-network:
