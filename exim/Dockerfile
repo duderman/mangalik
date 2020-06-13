@@ -12,4 +12,6 @@ RUN chmod +x /exim
 
 VOLUME /var/spool/exim4
 
+ADD sender_redirects /etc/exim4
+
 ENTRYPOINT ["/exim"]
