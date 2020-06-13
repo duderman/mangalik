@@ -9,7 +9,8 @@ const port = 8080;
 const host = '0.0.0.0';
 
 const app = express();
-app.use(bodyParser.raw());
+
+app.use(bodyParser.urlencoded());
 
 app.post('/', (req, res) => {
   let transporter = nodemailer.createTransport({
@@ -43,4 +44,4 @@ app.post('/', (req, res) => {
 });
 
 console.log(`Listening on port ${port}`);
-app.listen(port, host);
+app.listen(port);
