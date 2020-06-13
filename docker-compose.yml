@@ -20,7 +20,7 @@ services:
       - email-network
     environment:
       - SMTP_HOST=exim
-      - SMTP_PORT=4444
+      - SMTP_PORT=25
       - EMAILS_RECEIVER
       - SMTP_USER
       - SMTP_PASS
@@ -37,8 +37,6 @@ services:
       - ALLOWED_HOSTS="172.17.0.1/16"
     volumes:
       - /data:/data
-    ports:
-      - 4444:25
   nginx:
     image: nginx:mainline-alpine
     restart: unless-stopped
