@@ -251,15 +251,15 @@
             <form action="/order" method="post">
               <div class="form-group">
                 <label for="name" class="sr-only">Имя</label>
-                <input type="text" class="form-control" id="name" placeholder="Как звать?" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Как звать?" required>
               </div>
               <div class="form-group">
                 <label for="email" class="sr-only">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Куда писать?" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Куда писать?" required>
               </div>
               <div class="form-group">
-                <label for="message" class="sr-only">Сообщение</label>
-                <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Что хотеть?" required></textarea>
+                <label for="msg" class="sr-only">Сообщение</label>
+                <textarea name="msg" id="msg" cols="30" rows="10" class="form-control" placeholder="Что хотеть?" required></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Оформить заказ">

@@ -9,7 +9,7 @@ const port = 8080;
 const host = '0.0.0.0';
 
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 app.post('/', (req, res) => {
   let transporter = nodemailer.createTransport({
