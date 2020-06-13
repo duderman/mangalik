@@ -34,6 +34,8 @@ services:
       - PRIMARY_HOST=xn--80aaivkedj.xn--p1ai
     volumes:
       - /data:/data
+    ports:
+      - "25:25"
   nginx:
     image: nginx:mainline-alpine
     restart: unless-stopped
