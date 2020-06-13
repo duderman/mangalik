@@ -22,6 +22,8 @@ app.post('/', (req, res) => {
     },
   });
 
+  console.log(req)
+
   let name = req.body.name
   let email = req.body.email
   let msg = req.body.msg
