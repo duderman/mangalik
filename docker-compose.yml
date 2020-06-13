@@ -17,6 +17,7 @@ services:
       - site-network
       - email-network
     environment:
+      - DEBUG=express:*
       - SMTP_HOST=exim
       - SMTP_PORT=25
       - EMAILS_RECEIVER
