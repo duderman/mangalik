@@ -3,16 +3,14 @@ version: '3'
 services:
   site:
     build:
-      context: ./site
-      dockerfile: ./site/Dockerfile
+      context: site
     image: duderman/mangalik
     restart: unless-stopped
     networks:
       - site-network
   email_sender:
     build:
-      context: ./email_sender
-      dockerfile: ./email_sender/Dockerfile
+      context: email_sender
     image: duderman/mangalik-email_sender
     restart: unless-stopped
     networks:
@@ -26,8 +24,7 @@ services:
       - SMTP_PASS
   exim:
     build:
-      context: ./exim
-      dockerfile: ./exim/Dockerfile
+      context: exim
     image: duderman/mangalik-exim
     restart: unless-stopped
     networks:
