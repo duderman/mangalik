@@ -5,13 +5,13 @@ RUN apt-get install -y exim4
 RUN apt-get install -y xtail
 
 RUN rm -rf /etc/exim4 && mkdir -p /etc/exim4
-ADD exim4.conf /etc/exim4/exim4.conf
+COPY exim4.conf /etc/exim4/exim4.conf
 
-ADD start.sh /exim
+COPY start.sh /exim
 RUN chmod +x /exim
 
 VOLUME /var/spool/exim4
 
-ADD sender_redirects /etc/exim4
+COPY sender_redirects /etc/exim4
 
 ENTRYPOINT ["/exim"]

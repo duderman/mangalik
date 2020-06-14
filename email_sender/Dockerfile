@@ -7,7 +7,7 @@ COPY yarn.lock ./
 
 RUN yarn install
 
-COPY . .
+COPY index.js ./
 
 EXPOSE 8080
 
