@@ -255,7 +255,7 @@
             </div>
           </div>
           <div class="col-md pr-md-5 mb-5">
-            <form action="/order" method="post">
+            <form id="form" action="/order" method="post">
               <div class="form-group">
                 <label for="name" class="sr-only">Имя</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Как звать?" required>
@@ -269,7 +269,7 @@
                 <textarea name="msg" id="msg" cols="30" rows="10" class="form-control" placeholder="Что хотеть?" required></textarea>
               </div>
               <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Оформить заказ">
+                <input id="order-btn" type="submit" class="btn btn-primary" value="Оформить заказ">
               </div>
             </form>
           </div>
