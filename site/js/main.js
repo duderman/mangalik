@@ -12,29 +12,6 @@ $(document).ready(function($) {
 	};
 	loader();
 
-	var carousel = function() {
-		$('.owl-carousel').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: true,
-			stagePadding: 5,
-			nav: false,
-			navText: ['<span class="icon-chevron-left">', '<span class="icon-chevron-right">'],
-			responsive:{
-				0:{
-					items: 1
-				},
-				600:{
-					items: 2
-				},
-				1000:{
-					items: 3
-				}
-			}
-		});
-	};
-	carousel();
-
 	// scroll
 	var scrollWindow = function() {
 		$(window).scroll(function(){
@@ -74,33 +51,6 @@ $(document).ready(function($) {
 		});
 	};
 	scrollWindow();
-
-	var counter = function() {
-
-		$('#section-counter').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-
-				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-				$('.ftco-number').each(function(){
-					var $this = $(this),
-						num = $this.data('number');
-						console.log(num);
-					$this.animateNumber(
-					  {
-					    number: num,
-					    numberStep: comma_separator_number_step
-					  }, 7000
-					);
-				});
-
-			}
-
-		} , { offset: '95%' } );
-
-	}
-	counter();
-
 
 
 	var contentWayPoint = function() {
@@ -163,6 +113,10 @@ $(document).ready(function($) {
 	};
 	OnePageNav();
 
+	var addAlert = function(type, text) {
+		$('<div class="alert alert-'+type+' animated fadeIn" role="alert">'+text+'</div>').insertAfter('#form')
+	}
+
 	$('#order-btn').click(function(event) {
 		var data = {
 			name: $('#name').val(),
@@ -170,14 +124,15 @@ $(document).ready(function($) {
 			msg: $('#msg').val(),
 		}
 		$.ajax({url: '/order', method: 'POST', data: data}).done(function () {
-			$('<div class="alert alert-success" role="alert">Принял</div>').insertAfter('#form')
+			addAlert('success', 'Принял')
 			$('#name').val('')
 			$('#email').val('')
 			$('#msg').val('')
 		}).fail(function () {
-			$('<div class="alert alert-danger" role="alert">Не смогла :(</div>').insertAfter('#form')
+			addAlert('danger', 'Чёт не смогла :(')
 		}).always(function() {
-			setTimeout(function() { $(".alert").remove() }, 10000)
+			setTimeout(function() { $(".alert").addClass('fadeOut') }, 10000)
+			setTimeout(function() { $(".alert").remove() }, 11000)
 		})
 
 		event.stopImmediatePropagation()
