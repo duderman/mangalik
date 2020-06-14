@@ -38,7 +38,8 @@ app.post('/', (req, res) => {
     html: "<b>"+body+"</b>",
   }).then(function() {
     res.status(201).send('Принял');
-  }).catch(function(){
+  }).catch(function(e){
+    console.error(e)
     res.status(500).send('Не смогла :(');
   })
 });
